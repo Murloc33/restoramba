@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Images/restaurantButton.jpg</file>
+        <file>Images/userButton.png</file>
+        <file>CustomToolBar.qml</file>
+        <file>Images/deliveryButton.jpg</file>
+        <file>MainMenuButtons.qml</file>
+    </qresource>
+</RCC>
