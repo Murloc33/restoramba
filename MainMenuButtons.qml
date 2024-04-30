@@ -7,23 +7,22 @@ import QtQuick.Controls.Styles 1.4
 ColumnLayout {
     id: columnRow
 
-    anchors.fill: parent
 
     Row {
 
         spacing: root.width * 0.138
 
-        Layout.topMargin: 125
-        Layout.bottomMargin: root.height * 0.70
-        Layout.leftMargin: root.width * 0.107
-        Layout.rightMargin: root.width * 0.107
+        Layout.topMargin: Window.width * 0.2
+        // Layout.bottomMargin:Window.height * 0.70cc
+        Layout.leftMargin: Window.width * 0.107
+        Layout.rightMargin: Window.width * 0.107
+
                 Button {
                     id: restaurantButton
 
-                    width: 128
-                    height: 128
+                    width: Window.width * 0.3
+                    height: Window.width * 0.3
 
-                    anchors.left: parent.right
                     Column {
                         Image {
                             id: restaurantImage
@@ -40,7 +39,7 @@ ColumnLayout {
 
                             horizontalAlignment: Text.AlignHCenter
 
-                            font.pixelSize: 18
+                            font.pixelSize: restaurantButton.width * 0.2
                         }
                     }
                 }
@@ -48,19 +47,15 @@ ColumnLayout {
                 Button {
                     id: deliveryButton
 
-                    width: 128
-                    height: 128
-
-                    anchors.right: parent.left
-                    // width: deliveryImage.width
-                    // height: deliveryImage.height
+                    width: Window.width * 0.3
+                    height: Window.width * 0.3
 
                         Column {
                             Image {
                                 id: deliveryImage
 
                                 width: deliveryButton.width
-                                height: deliveryButton.height
+                                height:deliveryButton.height
 
                                 source: "qrc:/Images/deliveryButton.jpg"
                             }
@@ -71,10 +66,9 @@ ColumnLayout {
 
                                 horizontalAlignment: Text.AlignHCenter
 
-                                font.pixelSize: 18
+                                font.pixelSize: deliveryButton.width * 0.2
+                            }
                         }
+                    }
                 }
-            }
-        }
-
 }
