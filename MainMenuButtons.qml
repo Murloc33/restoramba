@@ -13,7 +13,6 @@ ColumnLayout {
         spacing: root.width * 0.138
 
         Layout.topMargin: Window.width * 0.2
-        // Layout.bottomMargin:Window.height * 0.70cc
         Layout.leftMargin: Window.width * 0.107
         Layout.rightMargin: Window.width * 0.107
 
@@ -34,7 +33,7 @@ ColumnLayout {
                         }
 
                         Text {
-                            text: "Ретсоран"
+                            text: "Ресторан"
                             width: restaurantButton.width
 
                             horizontalAlignment: Text.AlignHCenter

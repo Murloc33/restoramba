@@ -4,6 +4,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Styles 1.4
 
+
 ApplicationWindow {
     id: root
 
@@ -14,8 +15,15 @@ ApplicationWindow {
     header: CustomToolBar {
     }
 
-    MainMenuButtons {
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: Window.width * 0.4
+        MainMenuButtons {
+            id: mainMenuButton
+        }
 
+        RestaurantField {
+            id: field
+        }
     }
-
 }

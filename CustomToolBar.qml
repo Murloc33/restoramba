@@ -35,17 +35,29 @@ ToolBar {
 
             RoundButton{
                 id: locationButton
-
                 anchors.centerIn: rowLayout
-
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.leftMargin: 30
                 Layout.rightMargin: 30
-
-                palette.button: "#D9D9D9"
-
+                palette.button: "Orange"
                 radius: 15
+
+                Text {
+                    id: textAdress
+                    text: "Адрес >"
+                    anchors.top: parent.top
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: 15
+                }
+
+                Text {
+                    text: "8 Марта, 46"
+                    anchors.top: textAdress.top
+                    anchors.topMargin: 15
+                    anchors.horizontalCenter: textAdress.horizontalCenter
+                    font.pixelSize: 20
+                }
              }
         }
     }

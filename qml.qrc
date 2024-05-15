@@ -6,5 +6,7 @@
         <file>CustomToolBar.qml</file>
         <file>Images/deliveryButton.jpg</file>
         <file>MainMenuButtons.qml</file>
+        <file>Restaurant.qml</file>
+        <file>RestaurantField.qml</file>
     </qresource>
 </RCC>
