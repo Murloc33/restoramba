@@ -4,8 +4,9 @@ import QtQuick.Layouts 1.12
 
 Item {
     property alias restaurantName: restaurantName.text
-    property alias  restaurantRating: restaurantRating.text
-    property alias  restaurantDistance: restaurantDistance.text
+    property alias restaurantRating: restaurantRating.text
+    property alias restaurantDistance: restaurantDistance.text
+    property alias restaurantPhoto: restaurantPhoto.source
 
     Rectangle {
         id: rec
@@ -14,9 +15,8 @@ Item {
         color: "transparent"
 
         Image {
-            id: icon
+            id: restaurantPhoto
             anchors.fill: parent
-            source: "qrc:/Images/deliveryButton.jpg"
             fillMode: Image.PreserveAspectFit
 
             Text {
@@ -37,12 +37,6 @@ Item {
         Text {
             id: restaurantName
             font.pixelSize: Window.width * 0.05
-        }
-
-        RowLayout {
-            Image {
-
-            }
         }
 
         Text {

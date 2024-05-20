@@ -22,9 +22,10 @@ ColumnLayout {
         delegate: Restaurant {
             width: root.width
             height: root.width * 0.3
-            restaurantName: model.RestaurantNameRole
-            restaurantRating: model.RestaurantRatingRole
-            restaurantDistance: model.RestaurantDistanceRole
+            restaurantName: model.name
+            restaurantRating: model.rating
+            restaurantDistance: model.distance
+            restaurantPhoto: model.photo
         }
     }
 

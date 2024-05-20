@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QSslSocket>
 
 #define URL "http://91.222.238.209/restaurants/nearest"
 
@@ -19,6 +20,8 @@ NearestRestaurantModel::NearestRestaurantModel(QObject* parent)
 
 void NearestRestaurantModel::get(double latitude, double longitude)
 {
+	qInfo() << QSslSocket::sslLibraryBuildVersionString();
+	qInfo() << QSslSocket::sslLibraryVersionString();
 	QNetworkRequest request;
 	QString params = QString("?latitude=%1&longitude=%2").arg(latitude).arg(longitude);
 	request.setUrl(QUrl(URL + params));
@@ -59,10 +62,10 @@ QVariant NearestRestaurantModel::data(const QModelIndex &index, int role) const
 RolesHash NearestRestaurantModel::roleNames() const
 {
 	RolesHash roles;
-	roles[RestaurantNameRole]		= "name";
-	roles[RestaurantRatingRole]			= "rating";
-	roles[RestaurantDistanceRole]	= "distance";
-	roles[RestaurantPhotoRole]	= "photo";
+	roles[RestaurantNameRole]	  = "name";
+	roles[RestaurantRatingRole]	  = "rating";
+	roles[RestaurantDistanceRole] = "distance";
+	roles[RestaurantPhotoRole]	  = "photo";
 
 	return roles;
 }
@@ -71,6 +74,7 @@ void NearestRestaurantModel::slotRequestCompleted()
 {
 	QNetworkReply* reply = qobject_cast<QNetworkReply *>(sender());
 	if (reply->error() == QNetworkReply::NoError) {
+		beginResetModel();
 		QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
 		QJsonObject root = document.object();
 		QJsonArray jsonArray = root.value("content").toArray();
@@ -81,8 +85,11 @@ void NearestRestaurantModel::slotRequestCompleted()
 			newRestaurant.name = jsonObject.value("name").toString();
 			newRestaurant.rating = jsonObject.value("rating").toDouble();
 			newRestaurant.distance = jsonObject.value("distance").toInt();
-			newRestaurant.photo = jsonObject.value("photo").toString();
+			newRestaurant.photo = "https://eda.yandex.ru" + jsonObject.value("photo").toString();
+			qDebug() << newRestaurant.name << newRestaurant.rating << newRestaurant.distance << newRestaurant.photo ;
+			m_nearestRestaurant.append(newRestaurant);
 		}
+		endResetModel();
 	} else {
 		qDebug() << "Error";
 	}
