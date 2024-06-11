@@ -12,18 +12,18 @@ ApplicationWindow {
     height: 844
     visible: true
 
-    header: CustomToolBar {
-    }
+    StackView {
+        id: stackView
 
-    ColumnLayout {
-        anchors.fill: parent
-        spacing: Window.width * 0.4
-        MainMenuButtons {
-            id: mainMenuButton
+        initialItem: MainMenu {
         }
 
-        RestaurantField {
-            id: field
+        anchors.fill: parent
+    }
+
+    Component {
+        id: pageComponentRestaurantMenu
+        RestaurantMenu {
         }
     }
 }

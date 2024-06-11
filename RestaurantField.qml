@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
+import QtQuick.Controls 2.12
 import NearestRestaurantModel 1.0
 ColumnLayout {
     id: root
@@ -15,19 +16,18 @@ ColumnLayout {
             id: model
         }
 
-
-        spacing: 200
-
+        spacing: Window.width * 0.1
 
         delegate: Restaurant {
-            width: root.width
-            height: root.width * 0.3
             restaurantName: model.name
             restaurantRating: model.rating
             restaurantDistance: model.distance
             restaurantPhoto: model.photo
+            restaurantStar: model.star
+            restaurantRatingStr: model.ratingStr
         }
+
+        clip: true
+        ScrollBar.vertical: ScrollBar { }
     }
-
 }
-

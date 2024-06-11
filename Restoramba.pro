@@ -1,5 +1,4 @@
-QT += quick
-
+QT += quick positioning
 CONFIG += c++11
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -7,6 +6,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        dishesnearestrestaurantmodel.cpp \
         main.cpp \
         nearestrestaurantmodel.cpp
 
@@ -29,4 +29,5 @@ DISTFILES += \
     Images/image 13.png
 
 HEADERS += \
+    dishesnearestrestaurantmodel.h \
     nearestrestaurantmodel.h

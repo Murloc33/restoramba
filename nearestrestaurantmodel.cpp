@@ -9,13 +9,24 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QSslSocket>
+#include <QGeoPositionInfo>
 
 #define URL "http://91.222.238.209/restaurants/nearest"
 
 NearestRestaurantModel::NearestRestaurantModel(QObject* parent)
 	:QAbstractListModel(parent)
 {
-	get(56.8290526, 60.5887337);
+    // QGeoPositionInfo positionInfo;
+    // if (positionInfo.isValid()) {
+    //     double latitude = positionInfo.coordinate().latitude();
+    //     double longitude = positionInfo.coordinate().longitude();
+    //     qDebug() << "Latitude: " << latitude;
+    //     qDebug() << "Longitude: " << longitude;
+    // } else {
+    //     qDebug() << "Failed to get geographical position";
+    // }
+
+    get(56.828493, 60.588545);
 }
 
 void NearestRestaurantModel::get(double latitude, double longitude)
@@ -54,6 +65,10 @@ QVariant NearestRestaurantModel::data(const QModelIndex &index, int role) const
 		return QVariant::fromValue(restaurantInfo.distance);
 	case RestaurantPhotoRole:
 		return QVariant::fromValue(restaurantInfo.photo);
+    case RestaurantStarRole:
+        return QVariant::fromValue(restaurantInfo.star);
+    case RestaurantRatingStrRole:
+        return QVariant::fromValue(restaurantInfo.ratingStr);
 	}
 
 	return QVariant();
@@ -66,6 +81,8 @@ RolesHash NearestRestaurantModel::roleNames() const
 	roles[RestaurantRatingRole]	  = "rating";
 	roles[RestaurantDistanceRole] = "distance";
 	roles[RestaurantPhotoRole]	  = "photo";
+    roles[RestaurantStarRole]     = "star";
+    roles[RestaurantRatingStrRole]= "ratingStr";
 
 	return roles;
 }
@@ -82,10 +99,22 @@ void NearestRestaurantModel::slotRequestCompleted()
 		{
 			QJsonObject jsonObject = jsonElement.toObject();
 			RestaurantInfo newRestaurant;
-			newRestaurant.name = jsonObject.value("name").toString();
+
+            newRestaurant.name = "<b>" + jsonObject.value("name").toString() + "<b>";
 			newRestaurant.rating = jsonObject.value("rating").toDouble();
-			newRestaurant.distance = jsonObject.value("distance").toInt();
-			newRestaurant.photo = "https://eda.yandex.ru" + jsonObject.value("photo").toString();
+            newRestaurant.distance = tr("%1 метров").arg(jsonObject.value("distance").toInt());
+            newRestaurant.photo = jsonObject.value("photo").toString();
+
+            if (newRestaurant.rating >= 4) {
+                newRestaurant.star = "Images/goodStar.png";
+                newRestaurant.ratingStr = "Отлично";
+            } else if (newRestaurant.rating >= 3) {
+                newRestaurant.star = "Images/goodStar.png";
+                newRestaurant.ratingStr = "Хорошо";
+            } else {
+                newRestaurant.star = "Images/goodStar.png";
+                newRestaurant.ratingStr = "Плохо";
+            }
 			qDebug() << newRestaurant.name << newRestaurant.rating << newRestaurant.distance << newRestaurant.photo ;
 			m_nearestRestaurant.append(newRestaurant);
 		}

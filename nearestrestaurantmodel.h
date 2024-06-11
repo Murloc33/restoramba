@@ -15,7 +15,9 @@ public:
 		RestaurantNameRole = Qt::UserRole + 1,
 		RestaurantRatingRole,
 		RestaurantDistanceRole,
-		RestaurantPhotoRole
+        RestaurantPhotoRole,
+        RestaurantStarRole,
+        RestaurantRatingStrRole
 	};
 	Q_ENUM(Roles)
 
@@ -30,10 +32,12 @@ public:
 	RolesHash roleNames() const override;
 
 	struct RestaurantInfo {
+        QString ratingStr;
 		QString name;
-		qint64 rating;
-		double distance;
+        double rating;
+        QString distance;
 		QString photo;
+        QString star;
 	};
 
 private:

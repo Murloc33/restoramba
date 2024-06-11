@@ -8,5 +8,12 @@
         <file>MainMenuButtons.qml</file>
         <file>Restaurant.qml</file>
         <file>RestaurantField.qml</file>
+        <file>Images/goodStar.png</file>
+        <file>Images/subtract.png</file>
+        <file>RestaurantMenu.qml</file>
+        <file>MainMenu.qml</file>
+        <file>RestaurantDish.qml</file>
+        <file>DishField.qml</file>
+        <file>Images/Arrow_left.png</file>
     </qresource>
 </RCC>

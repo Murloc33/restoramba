@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include "nearestrestaurantmodel.h"
+#include "dishesnearestrestaurantmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
 	QGuiApplication app(argc, argv);
 
 	qmlRegisterType<NearestRestaurantModel> ("NearestRestaurantModel", 1, 0, "NearestRestaurantModel");
+    qmlRegisterType<DishesNearestRestaurantModel> ("DishesNearestRestaurantModel", 1, 0, "DishesNearestRestaurantModel");
 
 	QQmlApplicationEngine engine;
 	const QUrl url(QStringLiteral("qrc:/main.qml"));
